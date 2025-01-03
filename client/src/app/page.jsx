@@ -58,7 +58,7 @@ export default function AuroraBackgroundDemo() {
           <div className="text-center">
             <div className="flex justify-center">
               <h1 className="w-max pb-2 animated-underline fade-pullup text-4xl sm:text-5xl lg:text-7xl font-bold mb-6">
-                Ownio
+                VedaMint
               </h1>
             </div>
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
