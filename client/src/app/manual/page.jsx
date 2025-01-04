@@ -19,7 +19,7 @@ export default function StepsPage() {
       number: 3,
       title: 'Add Funds',
       description: (
-        <>Use <Link target='_blank' className='text-blue-500 underline' href="https://core.app/en/tools/testnet-faucet/?subnet=c&token=c">Fuji Faucet</Link> with a coupon code <samp className="bg-yellow-200 text-red-500 font-extrabold">devrel-avax-0112</samp> to add funds to your Wallet to cover transaction fees.</>
+        <>Use <Link target='_blank' className='text-blue-500 underline' href="https://core.app/en/tools/testnet-faucet/?subnet=c&token=c">Fuji Faucet</Link> with a coupon code <samp className="bg-yellow-300 text-red-500 font-extrabold">devrel-avax-0112</samp> to add funds to your Wallet to cover transaction fees.</>
       ),
     },
     {
