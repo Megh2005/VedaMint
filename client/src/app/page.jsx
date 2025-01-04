@@ -3,9 +3,9 @@
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { WalletContext } from "@/context/wallet";
 import { BrowserProvider } from "ethers";
-import { motion } from "framer-motion";
+import { LoaderCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 export default function AuroraBackgroundDemo() {
@@ -18,6 +18,7 @@ export default function AuroraBackgroundDemo() {
     signer,
     setSigner,
   } = useContext(WalletContext);
+  const [connectBtnLoading, setConnectBtnLoading] = useState(true);
 
   const connectWallet = async () => {
     if (!window.ethereum) {
@@ -40,9 +41,10 @@ export default function AuroraBackgroundDemo() {
       if (chainId.toString() !== sepoliaNetworkId) {
         toast.error("Please Switch To Avalanche Fuji Testnet");
       } else {
+        sessionStorage.setItem("walletAddress", accounts[0]);
         toast.success("Wallet Connected");
         setTimeout(() => {
-          router.push("/about");
+          router.push("/register");
         }, 3000);
       }
     } catch (error) {
@@ -50,6 +52,15 @@ export default function AuroraBackgroundDemo() {
       console.error("Connection error:", error);
     }
   };
+
+  useEffect(() => {
+    const walletAddress = sessionStorage.getItem("walletAddress");
+    if (walletAddress) {
+      setUserAddress(walletAddress);
+      setIsConnected(true);
+    }
+    setConnectBtnLoading(false);
+  }, []);
 
   return (
     <AuroraBackground>
@@ -66,12 +77,17 @@ export default function AuroraBackgroundDemo() {
             </p>
             <div className="flex justify-center gap-4">
               <button
+                disabled={connectBtnLoading}
                 onClick={connectWallet}
                 className="font-bold max-w-sm flex items-center justify-center bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors"
               >
-                {isConnected
-                  ? `${userAddress.slice(0, 12)}...${userAddress.slice(-13)}`
-                  : "Connect With Metamask"}
+                {connectBtnLoading ? (
+                  <LoaderCircleIcon className="animate-spin w-5 h-5 text-white" />
+                ) : isConnected ? (
+                  `${userAddress.slice(0, 12)}...${userAddress.slice(-13)}`
+                ) : (
+                  "Connect With Metamask"
+                )}
               </button>
             </div>
           </div>
