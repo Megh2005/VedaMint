@@ -10,7 +10,7 @@ export default function WordPullUpDemo() {
     const minter = () => {
       toast.success("Thank you for reading")
       setTimeout(() => {
-        router.push("/mint")
+        router.push("/manual")
       }, 3000)
     }
     

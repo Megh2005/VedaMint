@@ -43,12 +43,11 @@ export default function SignupFormDemo() {
                         <Input required id="password" placeholder="••••••••" type="password" />
                     </LabelInputContainer>
                     <LabelInputContainer className="mb-4">
-                        <Label htmlFor="github">GitHub URL</Label>
+                        <Label htmlFor="avatar">Avatar Image</Label>
                         <Input
                             required
-                            id="github"
-                            placeholder="https://github.com/{user_name}"
-                            type="url"
+                            id="avatar"
+                            type="file"
                         />
                     </LabelInputContainer>
                     <button

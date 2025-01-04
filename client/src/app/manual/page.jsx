@@ -52,7 +52,7 @@ export default function StepsPage() {
         <title>Step-by-Step Process</title>
         <meta name="description" content="Learn how to create NFTs step by step." />
       </Head>
-      <main className="min-h-screen inset-0 -z-10 w-full [background:radial-gradient(160%_160%_at_50%_10%,#000_40%,#63e_100%)] text-gray-200 flex flex-col items-center">
+      <main className="min-h-screen inset-0 -z-10 w-full [background:radial-gradient(100%_100%_at_50%_5%,#000_40%,#63e_100%)] text-gray-200 flex flex-col items-center">
         <header className="w-full py-6 bg-[#000000] shadow-xl">
           <h1 className="text-3xl font-bold text-center text-gray-100">NFT Creation & Verification Steps</h1>
         </header>
