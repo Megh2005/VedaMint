@@ -4,7 +4,6 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 import { WalletContextProvider } from "@/context/wallet";
 import Navbar from "./components/Nvbar";
-import WalletConnectBtn from "@/components/WalletConnectBtn";
 
 const inter = Roboto_Slab({ weight: ["400"], subsets: ["latin"] });
 
@@ -36,7 +35,6 @@ export default function RootLayout({ children }) {
             enableSystem
             disableTransitionOnChange
           >
-            <WalletConnectBtn />
             <Navbar />
             {children}
             <Toaster />
