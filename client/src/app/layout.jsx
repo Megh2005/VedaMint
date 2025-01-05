@@ -1,25 +1,32 @@
-import { Roboto_Slab } from 'next/font/google'
-import './globals.css'
-import { ThemeProvider } from 'next-themes'
-import { Toaster } from 'react-hot-toast'
-import { WalletContextProvider } from '@/context/wallet'
-import Navbar from './components/Nvbar'
+import { Roboto_Slab } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "next-themes";
+import { Toaster } from "react-hot-toast";
+import { WalletContextProvider } from "@/context/wallet";
+import Navbar from "./components/Nvbar";
+import WalletConnectBtn from "@/components/WalletConnectBtn";
 
-const inter = Roboto_Slab({ weight:["400"], subsets: ['latin'] })
+const inter = Roboto_Slab({ weight: ["400"], subsets: ["latin"] });
 
 export const metadata = {
-  title: 'VedaMint',
-  description: 'VedaMint',
-  keywords: 'VedaMint',
-}
+  title: "VedaMint",
+  description: "VedaMint",
+  keywords: "VedaMint",
+};
 
 export default function RootLayout({ children }) {
-  
   return (
     <html lang="en">
       <head>
-        <link rel="shortcut icon" href="https://res.cloudinary.com/dg2hsvg8w/image/upload/v1735274620/cadence_pohkhx.png" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="https://res.cloudinary.com/dg2hsvg8w/image/upload/v1735274620/flow_odmybv.png" />
+        <link
+          rel="shortcut icon"
+          href="https://res.cloudinary.com/dg2hsvg8w/image/upload/v1735274620/cadence_pohkhx.png"
+          type="image/x-icon"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="https://res.cloudinary.com/dg2hsvg8w/image/upload/v1735274620/flow_odmybv.png"
+        />
       </head>
       <WalletContextProvider>
         <body className={inter.className}>
@@ -27,13 +34,15 @@ export default function RootLayout({ children }) {
             attribute="class"
             defaultTheme="dark"
             enableSystem
-            disableTransitionOnChange>
-              <Navbar/>
+            disableTransitionOnChange
+          >
+            <WalletConnectBtn />
+            <Navbar />
             {children}
             <Toaster />
           </ThemeProvider>
         </body>
       </WalletContextProvider>
     </html>
-  )
+  );
 }
