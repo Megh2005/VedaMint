@@ -31,6 +31,7 @@ function LoginFormDemo() {
     e.preventDefault();
     const res = await login(userDetails.email, userDetails.password);
     if (res.success) {
+      localStorage.setItem("token", res.token);
       toast.success("Logged in successfully");
       router.push("/about");
     } else {

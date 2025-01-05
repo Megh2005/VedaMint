@@ -65,7 +65,7 @@ const WalletConnectBtn = () => {
   return (
     <div className="absolute top-0 right-0 m-4 z-50">
       <button
-        disabled={connectBtnLoading}
+        disabled={connectBtnLoading || isConnected}
         onClick={connectWallet}
         className="font-bold max-w-sm flex items-center justify-center bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors"
       >

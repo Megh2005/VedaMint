@@ -3,6 +3,7 @@
 import { connectDB } from "@/lib/db";
 import { UserModel } from "@/models/User";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export async function login(email, password) {
   await connectDB();
@@ -31,8 +32,18 @@ export async function login(email, password) {
       throw new Error("Password is incorrect");
     }
 
+    // generate token
+
+    const token = jwt.sign(
+      {
+        id: existingUser._id,
+      },
+      process.env.JWT_AUTH_SECRET
+    );
+
     return {
       success: true,
+      token,
       message: "User logged in successfully",
     };
   } catch (error) {
