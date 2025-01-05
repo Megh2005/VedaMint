@@ -8,8 +8,9 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { register } from "@/actions/register";
+import withAuth from "@/components/withAuth";
 
-export default function SignupFormDemo() {
+function SignupFormDemo() {
   const router = useRouter();
 
   const [userDetails, setUserDetails] = useState({
@@ -146,3 +147,5 @@ const LabelInputContainer = ({ children, className }) => {
     </div>
   );
 };
+
+export default withAuth(SignupFormDemo);
