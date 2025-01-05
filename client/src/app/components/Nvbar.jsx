@@ -51,13 +51,13 @@ const Navbar = () => {
                         </span>
                     </Link>
                     <Link
-                        href="/profile"
+                        href="/nfts"
                         className={`relative group hover:text-yellow-900`}
                         onClick={() => handleLinkClick("home")}
                     >
                         <RiProfileFill className="inline-block mr-2" />
                         <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                            Profile
+                            NFTs
                         </span>
                     </Link>
                     <Link
