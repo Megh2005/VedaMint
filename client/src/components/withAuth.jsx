@@ -8,6 +8,7 @@ const withAuth = (WrappedComponent) => {
     const router = useRouter();
 
     useEffect(() => {
+      if (typeof window === "undefined") return;
       const walletAddress = sessionStorage.getItem("walletAddress");
 
       if (!walletAddress) {
@@ -15,7 +16,8 @@ const withAuth = (WrappedComponent) => {
       }
     }, [router]);
 
-    const walletAddress = sessionStorage.getItem("walletAddress");
+    const walletAddress =
+      typeof window !== "undefined" && sessionStorage.getItem("walletAddress");
     return walletAddress ? <WrappedComponent {...props} /> : null;
   };
 };
