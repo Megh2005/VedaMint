@@ -33,7 +33,7 @@ function LoginFormDemo() {
     if (res.success) {
       localStorage.setItem("token", res.token);
       toast.success("Logged in successfully");
-      router.push("/about");
+      router.replace("/about");
     } else {
       toast.error(res.message || "Error logging in");
     }

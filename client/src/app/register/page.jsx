@@ -35,7 +35,7 @@ function SignupFormDemo() {
 
     if (res.success) {
       toast.success("Account created successfully");
-      router.push("/login");
+      router.replace("/login");
     } else {
       toast.error(res.message || "Error creating account");
     }

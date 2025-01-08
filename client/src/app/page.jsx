@@ -53,9 +53,7 @@ export default function AuroraBackgroundDemo() {
       } else {
         sessionStorage.setItem("walletAddress", accounts[0]);
         toast.success("Wallet Connected");
-        setTimeout(() => {
-          router.push("/register");
-        }, 3000);
+        router.replace("/register");
       }
     } catch (error) {
       toast.error("Error In Connecting Wallet");
