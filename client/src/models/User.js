@@ -25,6 +25,10 @@ const userSchema = new Schema(
       default: "",
       required: true,
     },
+    nfts: {
+      type: [String],
+      default: [],
+    },
   },
   { timestamps: true }
 );

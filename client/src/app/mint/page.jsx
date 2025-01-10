@@ -6,6 +6,7 @@ import marketplace from "./../marketplace.json";
 import { BrowserProvider, ethers } from "ethers";
 import { WalletContext } from "@/context/wallet";
 import toast from "react-hot-toast";
+import { uploadNFT } from "@/actions/uploadNFT";
 
 function SellNFT() {
   const [formParams, updateFormParams] = useState({
@@ -82,6 +83,21 @@ function SellNFT() {
         updateMessage("");
         setFileURL(response.pinataURL);
       }
+      if (!localStorage.getItem("token")) return;
+      const formData = new FormData();
+      formData.append("imgFile", file);
+      const uploadToCloudinary = uploadNFT(
+        formData,
+        localStorage.getItem("token")
+      );
+
+      toast.promise(uploadToCloudinary, {
+        loading: "Saving to Database...",
+        success: "Image Saved Successfully",
+        error: "Error during file upload",
+      });
+
+      await uploadToCloudinary;
     } catch (e) {
       console.log("Error during file upload...", e);
     }

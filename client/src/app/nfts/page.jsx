@@ -7,8 +7,9 @@ import axios from "axios";
 import NFTCard from "../components/nftCard/NFTCard";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { CornerUpRight } from "lucide-react";
 
-function Profile() {
+function NFTs() {
   const router = useRouter();
   const { setIsConnected, setUserAddress, setSigner } =
     useContext(WalletContext);
@@ -79,6 +80,31 @@ function Profile() {
     return { itemsArray, sumPrice };
   }
 
+  const copyGalleryUrl = async () => {
+    try {
+      const resPromise = axios.get("/api/user", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      toast.promise(resPromise, {
+        loading: "Checking..",
+        success: "Gallery URL Copied!",
+        error: "Error Copying Gallery URL",
+      });
+
+      const res = await resPromise;
+
+      if (res.data.success) {
+        const galleryUrl = `http://localhost:3000/gallery/${res.data.user._id}`;
+        navigator.clipboard.writeText(galleryUrl);
+      }
+    } catch (error) {
+      console.error("Error copying gallery URL:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -96,6 +122,14 @@ function Profile() {
   return (
     <div className="min-h-screen bg-black text-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-screen">
+        <div className="flex justify-end">
+          <button
+            onClick={copyGalleryUrl}
+            className="flex gap-2 items-center font-bold bg-secondary px-4 py-2 rounded-md"
+          >
+            Share <CornerUpRight className="w-4 h-4" />
+          </button>
+        </div>
         <div className="bg-black shadow-lg rounded-lg p-8">
           {isConnected ? (
             <>
@@ -578,4 +612,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default NFTs;
