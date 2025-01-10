@@ -2,9 +2,8 @@
 
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { WalletContext } from "@/context/wallet";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { BrowserProvider } from "ethers";
-import { LoaderCircleIcon } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
@@ -18,18 +17,6 @@ export default function AuroraBackgroundDemo() {
     setSigner,
   } = useContext(WalletContext);
   const router = useRouter();
-
-  const [connectBtnLoading, setConnectBtnLoading] = useState(true);
-
-  useEffect(() => {
-    const walletAddress = sessionStorage.getItem("walletAddress");
-    if (walletAddress) {
-      setUserAddress(walletAddress);
-      setIsConnected(true);
-    }
-    setConnectBtnLoading(false);
-  }, []);
-
   const connectWallet = async () => {
     if (!window.ethereum) {
       toast.error("Wallet Not Found");
@@ -51,7 +38,6 @@ export default function AuroraBackgroundDemo() {
       if (chainId.toString() !== sepoliaNetworkId) {
         toast.error("Please Switch To Avalanche Fuji Testnet");
       } else {
-        sessionStorage.setItem("walletAddress", accounts[0]);
         toast.success("Wallet Connected");
         router.replace("/register");
       }
@@ -77,13 +63,11 @@ export default function AuroraBackgroundDemo() {
           </div>
           <div className="flex justify-center">
             <button
-              disabled={connectBtnLoading || isConnected}
+              disabled={isConnected}
               onClick={connectWallet}
               className="font-bold max-w-sm flex items-center justify-center bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors"
             >
-              {connectBtnLoading ? (
-                <LoaderCircleIcon className="animate-spin w-5 h-5 text-white" />
-              ) : isConnected ? (
+              {isConnected ? (
                 `${userAddress.slice(0, 12)}...${userAddress.slice(-13)}`
               ) : (
                 <span>Connect With Metamask</span>

@@ -1,7 +1,6 @@
 "use client";
 
 import WordPullUp from "@/components/ui/word-pull-up";
-import withAuth from "@/components/withAuth";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -50,4 +49,4 @@ function WordPullUpDemo() {
   );
 }
 
-export default withAuth(WordPullUpDemo);
+export default WordPullUpDemo;

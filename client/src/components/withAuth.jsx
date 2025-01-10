@@ -9,16 +9,16 @@ const withAuth = (WrappedComponent) => {
 
     useEffect(() => {
       if (typeof window === "undefined") return;
-      const walletAddress = sessionStorage.getItem("walletAddress");
+      const token = localStorage.getItem("token");
 
-      if (!walletAddress) {
+      if (!token) {
         router.replace("/");
       }
     }, [router]);
 
-    const walletAddress =
-      typeof window !== "undefined" && sessionStorage.getItem("walletAddress");
-    return walletAddress ? <WrappedComponent {...props} /> : null;
+    const token =
+      typeof window !== "undefined" && localStorage.getItem("token");
+    return token ? <WrappedComponent {...props} /> : null;
   };
 };
 

@@ -6,7 +6,6 @@ import marketplace from "./../marketplace.json";
 import { BrowserProvider, ethers } from "ethers";
 import { WalletContext } from "@/context/wallet";
 import toast from "react-hot-toast";
-import withAuth from "@/components/withAuth";
 
 function SellNFT() {
   const [formParams, updateFormParams] = useState({
@@ -709,4 +708,4 @@ function SellNFT() {
   );
 }
 
-export default withAuth(SellNFT);
+export default SellNFT;

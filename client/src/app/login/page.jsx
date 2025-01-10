@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { login } from "@/actions/login";
-import withAuth from "@/components/withAuth";
 
 function LoginFormDemo() {
   const router = useRouter();
@@ -118,4 +117,4 @@ const LabelInputContainer = ({ children, className }) => {
   );
 };
 
-export default withAuth(LoginFormDemo);
+export default LoginFormDemo;
