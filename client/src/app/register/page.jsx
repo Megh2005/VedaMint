@@ -30,14 +30,18 @@ function SignupFormDemo() {
     formData.append("password", userDetails.password);
     formData.append("avatarFile", userDetails.avatarFile);
 
-    const res = await register(formData);
-
-    if (res.success) {
-      toast.success("Account created successfully");
-      router.replace("/login");
-    } else {
-      toast.error(res.message || "Error creating account");
-    }
+    toast.promise(
+      register(formData),
+      {
+        loading: "Creating account...",
+        success: "Account created successfully",
+        error: (err) => err.message || "Error creating account",
+      }
+    ).then((res) => {
+      if (res.success) {
+        router.replace("/login");
+      }
+    });
   };
 
   return (

@@ -28,14 +28,18 @@ function LoginFormDemo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await login(userDetails.email, userDetails.password);
-    if (res.success) {
-      localStorage.setItem("token", res.token);
-      toast.success("Logged in successfully");
-      router.replace("/about");
-    } else {
-      toast.error(res.message || "Error logging in");
-    }
+    toast.promise(
+      login(userDetails.email, userDetails.password),
+      {
+        loading: 'Logging in...',
+        success: (res) => {
+          localStorage.setItem("token", res.token);
+          router.replace("/about");
+          return 'Logged in successfully';
+        },
+        error: (err) => err.message || 'Error logging in',
+      }
+    );
   };
 
   return (
