@@ -118,7 +118,6 @@ contract NFTSTORE is ERC721URIStorage {
                 currentIndex++;
             }
         }
-
         return myNFTs;
     }
 }
